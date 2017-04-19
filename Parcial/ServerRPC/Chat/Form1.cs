@@ -442,10 +442,18 @@ namespace Chat
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            for (int i = 0; i < remotes.Count; i++)
+            try
             {
-                remotes[i].UnSubscribe(n_user.nickname, n_user.ip, n_user.port);
+                for (int i = 0; i < remotes.Count; i++)
+                {
+                    remotes[i].UnSubscribe(n_user.nickname, n_user.ip, n_user.port);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error se intento desconnectarse de un server al que ya se habia perdido la conexion");
+            }
+           
 
         }
     }
